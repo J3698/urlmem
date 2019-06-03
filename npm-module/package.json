@@ -1,0 +1,25 @@
+{
+  "name": "urlmem",
+  "version": "1.0.3",
+  "description": "Shortened URLS made memorable",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j3698/urlmem.git"
+  },
+  "keywords": [
+    "markov",
+    "chain",
+    "random",
+    "url"
+  ],
+  "author": "j3698",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j3698/urlmem/issues"
+  },
+  "homepage": "https://github.com/j3698/urlmem#readme"
+}
