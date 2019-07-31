@@ -10,6 +10,12 @@ words = cleanWords(words);
 chain = createChain(words);
 
 exports.randomWord = function(length) {
+	if (typeof length != "number") {
+		throw "randomWord expects a number"
+	} else if (length < 2) {
+		throw "length must be at least 2"
+	}
+
 	return randomWord(chain, length);
 }
 

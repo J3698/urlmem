@@ -1,0 +1,81 @@
+.latestOut-enter{
+  opacity: 0;
+  transform: scale(0.5, 0);
+}
+
+.latestOut-enter-active, .latestOut-enter-done {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.latestOut-exit-done {
+  display: none;
+}
+
+html {
+	font-family: Arial;
+	overflow-x: hidden;
+}
+
+#root, body {
+	overflow-x: hidden;
+}
+
+.App {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-height: 100vh;
+	width: 100vw;
+	background-color: rgb(137, 207, 240);
+	text-align: center;
+	overflow-x: hidden;
+	box-sizing: border-box;
+	padding-bottom: calc(2em + 30px);
+}
+
+.blogButton {
+	font-size: 150%;
+	color: rgb(55, 90, 107);
+}
+
+.blogButton, .blogButton:link, .blogButton:visited,
+.blogButton:hover, .blogButton:active {
+	  text-decoration: none;
+	  color: 
+}
+
+.Header {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+}
+
+.bigIntro {
+	font-size: 250%;
+	margin-bottom: 0;
+}
+
+.smallIntro {
+	font-size: 120%;
+	margin-bottom: 2em;
+}
+
+.Footer {
+	position: absolute;
+	bottom: 0;
+	background-color: rgb(117, 187, 220);
+	color: rgb(55, 90, 107);
+	width: 100%;
+	height: auto;
+	line-height: 1.5em;
+	text-align: center;
+}
+
+.Top {
+	text-align: center;
+	padding-bottom: 4em;
+}
+
+

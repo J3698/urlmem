@@ -1,0 +1,26 @@
+{
+  "name": "urlmem-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev":
+      "concurrently \"nodemon index.js -i client node_modules\" \"npm --prefix ./client start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
+
+
+
+
+
+

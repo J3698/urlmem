@@ -1,0 +1,122 @@
+.shortenOptions {
+	position: relative;
+	display: inline-block;
+	width: 680px;
+	margin-bottom: 4em;
+}
+
+input[type="text"], .shortenButton {
+	border: 1px solid black;
+}
+
+.urlInput, .customInput {
+	font-size: 45px;
+	margin-bottom: 4px;
+	padding-left: .2em;
+	padding-right: .2em;
+}
+.urlInput, .shortenButton, .customInput { 
+	box-sizing: border-box;
+}
+.urlInput {
+	height: 60px;
+	width: 100%;
+	padding-right: 145px;
+}
+.shortenButton {
+	height: 60px;
+	width: 140px;
+
+	padding: 1px 5px 1px 5px;
+	font-size: 200%;
+	box-shadow: none;
+	background-color: rgb(142, 212, 245);
+	color: white;
+	-webkit-appearance: none;
+	cursor: pointer;
+}
+.shortenButton:focus {
+	outline-color: rgb(172, 242, 255);
+}
+.shortenButton:hover {
+	background-color: rgb(122, 192, 225);
+	color: rgb(240, 240, 240);
+}
+.shortenButton:active {
+	background-color: rgb(102, 172, 205);
+	color: rgb(220, 220, 220);
+}
+
+.desktopShortenButton {
+	composes: shortenButton;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.mobileShortenButton {
+	composes: shortenButton;
+	width: 100%;
+	margin-top: .3em;
+	display: none;
+}
+
+.customInput {
+	height: 35px;
+	width: 100%;
+	font-size: 30px;
+}
+.customInputSpan {
+	display: table-cell;
+	width: 100%;
+}
+.siteName {
+	font-size: 30px;
+	display: table-cell;
+	padding-right: 5px;
+}
+
+@media only screen and (max-width: 720px) {
+	.shortenOptions {
+		width: 94vw;
+	}
+}
+
+@media only screen and (max-width: 520px) {
+	.shortenOptions {
+		width: 94vw;
+	}
+	.urlInput {
+		padding-right: .2em;
+	}
+	.desktopShortenButton {
+		display: none;
+	}
+	.mobileShortenButton {
+		display: inline-block;
+		height: 45px;
+	}
+	.urlInput {
+		height: 50px;
+		font-size: 35px;
+	}
+	.siteName, .customInput {
+		font-size: 20px;
+	}
+	.customInput {
+		height: 28px;
+	}
+}
+
+
+@media only screen and (max-width: 370px) {
+	.urlInput {
+		height: 40px;
+		font-size: 27px;
+	}
+	.siteName, .customInput {
+		font-size: 17px;
+	}
+	.customInput {
+		height: 24px;
+	}
+}
