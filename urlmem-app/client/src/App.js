@@ -21,7 +21,7 @@ class App extends Component {
 			<UrlShortening />
 
 			<div className="Footer">
-				&copy; 2019 Antioch Sanders
+				&copy; 2020 Antioch Sanders
 				<br />
 				antiochsanders@gmail.com
 			</div>

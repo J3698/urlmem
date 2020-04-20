@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const alph = 'abcdefghijklmnopqrstuvwxyz'
 
 var dictionaryPath = path.resolve(__dirname, 'dictionary.txt');
