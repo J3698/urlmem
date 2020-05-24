@@ -15,7 +15,7 @@ input[type="text"], .shortenButton {
 	padding-left: .2em;
 	padding-right: .2em;
 }
-.urlInput, .shortenButton, .customInput { 
+.urlInput, .shortenButton, .customInput {
 	box-sizing: border-box;
 }
 .urlInput {
@@ -107,6 +107,11 @@ input[type="text"], .shortenButton {
 	}
 }
 
+.errorMessage {
+    background-color: rgba(255, 0, 0, .3);
+    color: white;
+    padding: 5px;
+}
 
 @media only screen and (max-width: 370px) {
 	.urlInput {

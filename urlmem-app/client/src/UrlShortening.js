@@ -7,7 +7,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 class UrlShortening extends Component {
   constructor(props) {
     super(props);
-    this.state = {numOutputs: 0, shortenedUrls: []};
+    this.state = {numOutputs: 0, showError: false, shortenedUrls: []};
     this.bindCallbacks();
   }
 
@@ -21,12 +21,12 @@ class UrlShortening extends Component {
     this.buildUrlQuery = this.buildUrlQuery.bind(this);
     this.finishLoading = this.finishLoading.bind(this);
     this.getNextId = this.getNextId.bind(this);
+    this.showError = this.showError.bind(this);
   }
 
   processNewLink() {
     this.addNewOutput();
     this.requestShortening();
-    this.clearInputForm();
   }
 
   requestShortening() {
@@ -41,15 +41,37 @@ class UrlShortening extends Component {
   finishLoading(longUrl, shortUrl) {
     console.log(shortUrl);
     console.log(this.state.shortenedUrls);
-    var newShortenedUrls = this.state.shortenedUrls.map(x => {
+    let updatedShortenedUrls = this.state.shortenedUrls.map(x => {
       if (x.longUrl !== longUrl || x.shortUrl !== "") {
         return x;
       } else {
-        return { ...x, 'shortUrl': shortUrl };
+        if (shortUrl === null) {
+          return { ...x, 'remove': true };
+        } else {
+          return { ...x, 'shortUrl': shortUrl };
+        }
       }
     });
-    console.log(newShortenedUrls);
-    this.setState({shortenedUrls: newShortenedUrls});
+    let isValid = (x) => !x.remove;
+    let validShortenedUrls = updatedShortenedUrls.filter(isValid)
+    if (validShortenedUrls.length === updatedShortenedUrls.length) {
+      this.clearInputForm();
+    } else {
+      this.showError();
+    }
+    this.setState({shortenedUrls: updatedShortenedUrls});
+  }
+
+  showError() {
+    if (!this.state.showError) {
+      /*this.setState({showError: true});*/
+      /*setTimeout(() => this.setState({showError: false}), 3000);*/
+      setTimeout(() => {
+          let isValid = (x) => !x.remove;
+          let validShortenedUrls = this.state.shortenedUrls.filter(isValid)
+          this.setState({showError: false, shortenedUrls: validShortenedUrls})
+      }, 800);
+    }
   }
 
   buildUrlQuery(longUrl, customUrl) {
@@ -89,7 +111,7 @@ class UrlShortening extends Component {
   getInput() {
     return {
       id: this.getNextId(),
-      shortUrl: this.customUrl.value,
+      shortUrl: "",
       longUrl: this.longUrl.value
     };
   }
@@ -143,6 +165,11 @@ class UrlShortening extends Component {
 
           shorten
         </button>
+
+        {/*this.state.showError &&
+        <div className={inputStyles.errorMessage}>
+          that shortening is unavailable :/
+        </div>*/}
       </div>
       <br />
     </>
@@ -160,6 +187,7 @@ class UrlShortening extends Component {
         >
           <UrlOutput longUrl={UrlPair.longUrl}
                      shortUrl={UrlPair.shortUrl}
+                     toRemove={UrlPair.remove === true}
           />
         </CSSTransition>
       )}
@@ -174,7 +202,6 @@ function copyLink() {
 }
 
 function UrlOutput(props) {
-  let isLoading = !props.shortUrl;
   return (
   <>
     <div className={outputStyles.shortenOutput}>
@@ -195,7 +222,8 @@ function UrlOutput(props) {
         {props.longUrl}
         <div className={outputStyles.longUrlCover}></div>
       </div>
-      <LoadingCover isLoading={isLoading} />
+      <LoadingCover show={!props.shortUrl} />
+      <FailedCover show={props.toRemove} />
     </div>
     <br />
   </>
@@ -203,15 +231,19 @@ function UrlOutput(props) {
 }
 
 function LoadingCover(props) {
-  if (props.isLoading) {
-    return (
-      <div className={outputStyles.loadingCover}>
-        ...
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (<>{props.show &&
+    <div className={outputStyles.loadingCover}>
+      ...
+    </div>}
+  </>);
+}
+
+function FailedCover(props) {
+  return (<>{props.show &&
+    <div className={outputStyles.failedCover}>
+      that shortening is taken :/
+    </div>}
+  </>);
 }
 
 export default UrlShortening;

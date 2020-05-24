@@ -15,7 +15,7 @@ class App extends Component {
 				</strong>
 			</p>
 			<p className="smallIntro">
-				Shortened URLS made memorable
+				Shortened URLs made memorable
 			</p>
 
 			<UrlShortening />
