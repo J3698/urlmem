@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Swap files
+*.swp
+
 # Runtime data
 pids
 *.pid
@@ -34,6 +37,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+urlmem-app/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
