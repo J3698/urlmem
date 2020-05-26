@@ -43,16 +43,16 @@ function qualify(longUrl) {
 }
 
 function customWordUnavailable(longUrl, customUrl) {
-  if (unavailable = usedWords.has(customUrl) &&
+  if (usedWords.has(customUrl) &&
       !(customUrl in longToCustomMappings[longUrl])) {
     // already in use
-    return false;
+    return true;
   } else if (customUrl == "" || customUrl == "index" ||
              customUrl == "index.htm" || customUrl == "index.html") {
     // reserved for home page
-    return false;
+    return true;
   }
-  return true;
+  return false;
 }
 
 function createCustomMapping(longUrl, customUrl) {
