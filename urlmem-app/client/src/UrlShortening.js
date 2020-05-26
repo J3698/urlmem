@@ -165,11 +165,6 @@ class UrlShortening extends Component {
 
           shorten
         </button>
-
-        {/*this.state.showError &&
-        <div className={inputStyles.errorMessage}>
-          that shortening is unavailable :/
-        </div>*/}
       </div>
       <br />
     </>
@@ -197,7 +192,7 @@ class UrlShortening extends Component {
 }
 
 function copyLink() {
-  let link = "http://localhost:5000/" + this.shortUrl;
+  let link = "UrlMem.com/" + this.shortUrl;
   navigator.clipboard.writeText(link);
 }
 

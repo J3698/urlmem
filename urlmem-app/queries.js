@@ -1,19 +1,34 @@
 const assert = require('assert');
-const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-client.connect(err => {
-  if (err) {
-    console.error('connection error', err.stack)
-  } else {
-    console.log('connected')
-  }
-});
+let client = null;
+if (process.env.NODE_ENV === 'production') {
+  const { Client } = require('pg');
+  client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    user: 'me',
+    database: 'urlmem',
+    password: 'password',
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      console.log('connected')
+    }
+  });
+} else {
+  const Pool = require('pg').Pool;
+  client = new Pool({
+    user: 'me',
+    host: 'localhost',
+    database: 'urlmem',
+    password: 'password',
+    port: 5432,
+  });
+}
 
 let isShortUrlUsedQuery = 'SELECT * FROM shortenings WHERE shorturl = $1';
 let getLongUrlQuery = 'SELECT (longurl) FROM shortenings WHERE shorturl = $1';
@@ -83,7 +98,7 @@ const addShortening = async (shortUrl, longUrl, isRandom) => {
   }
 }
 
-module.exports = {
+module.exports = function() {
   isShortUrlUsed,
   getLongUrl,
   getRandomShortening,
